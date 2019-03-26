@@ -1,0 +1,19 @@
+<div class="sidebar-wrapper">
+<h2>Account</h2>
+<nav class="navbar navbar-dark bg-dark">
+  <ul *ngIf="!(this.authenticationService.currentUserValue)" class="navbar-nav flex-column">
+      <li class="nav-item"><a class="nav-link" routerLink="login" routerLinkActive="active">Login</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="register" routerLinkActive="active">Register</a></li>
+  </ul>
+  <ul *ngIf="this.authenticationService.currentUserValue" class="navbar-nav flex-column">
+      <li class="nav-item"><a class="nav-link" routerLink="news-feed" routerLinkActive="active">News Feed</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="blocked-accounts" routerLinkActive="active">Blocked Accounts</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="account-update" routerLinkActive="active">Account Update</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="search" routerLinkActive="active">Search</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="logout" routerLinkActive="active">Logout</a></li>
+  </ul>
+</nav>
+</div>
+<div class="content-wrapper">
+<router-outlet></router-outlet>
+</div>

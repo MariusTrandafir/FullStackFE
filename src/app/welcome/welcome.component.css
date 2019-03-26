@@ -1,0 +1,13 @@
+.welcome-container {
+    overflow: auto;
+}
+.profile-image {
+    width: 100px;
+    height: 120px;
+    float: left;
+    margin: 10px;
+    border-style: solid;
+}
+.welcome-message {
+    font-size: 4em;
+}

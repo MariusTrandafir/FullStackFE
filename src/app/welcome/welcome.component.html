@@ -1,0 +1,7 @@
+<div class="welcome-container">
+<img class="profile-image" *ngIf="(!this.authenticationService.currentUserValue)" [src]="" />
+<img class="profile-image" *ngIf="(this.authenticationService.currentUserValue)" [src]="'http://localhost:8079/media' + (media | async)?.fileDownloadUri" />
+<h2 class="welcome-message" *ngIf="(!this.authenticationService.currentUserValue)">Welcome!</h2>
+<h2 class="welcome-message" *ngIf="(this.authenticationService.currentUserValue)">{{this.authenticationService.currentUserValue.username}}</h2>
+</div>
+
