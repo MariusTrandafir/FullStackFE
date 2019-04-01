@@ -2,3 +2,7 @@
     border-style:solid !important;
     border-color: #343a40 !important;
 }
+#main-wrapper {
+    display: flex;
+    min-height:100%;
+}

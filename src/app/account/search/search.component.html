@@ -1,3 +1,10 @@
-<p>
-  search works!
-</p>
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="form-inline mr-auto w-100 mt-1">
+    <input class="form-control mr-sm-2 w-75 p-3" type="text" formControlName="searchText" placeholder="Search" aria-label="Search">
+    <button class="btn btn-primary">Search</button>
+</form>
+<div *ngIf="searched"class="card-deck mt-1">
+    <div *ngFor="let media of medias| async" class="card border border-dark m-1 flex-fix">
+        <img (click)="moveToImage(media)" class="clickable" [src]="'http://localhost:8079/media'+ media.fileDownloadUri" width="120"
+          height="150">
+      </div>
+</div>

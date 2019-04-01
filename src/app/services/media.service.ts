@@ -9,6 +9,8 @@ import { Observable } from 'rxjs';
 })
 export class MediaService {
 
+  public currentMedia: Media
+
   constructor(private http: HttpClient, private authenticationService: AuthService) { }
 
   upload(media: Media, file: File) {
@@ -18,7 +20,12 @@ export class MediaService {
     formData.append("description", media.description);
     formData.append("tags", media.tags);
     formData.append("username", this.authenticationService.currentUserValue.username);
+    formData.append("likes", "0");
     return this.http.post(`http://localhost:8079/media/media/uploadFile`, formData);
+  }
+
+  update(media: Media) {
+
   }
 
   getProfileImage (username: String): Observable<any> {
@@ -27,6 +34,10 @@ export class MediaService {
   }
   getImages(username: String): Observable<any> {
     let requestUrl = 'http://localhost:8079/media/media/myImages/'+username;
+    return this.http.get(requestUrl)
+  }
+  search(searchString: String): Observable<any> {
+    let requestUrl = 'http://localhost:8079/media/media/search/'+searchString;
     return this.http.get(requestUrl)
   }
 }

@@ -1,3 +1,4 @@
-<p>
-  my-media-images works!
-</p>
+<div class="card mb-4 border border-dark m-2">
+  <img (click)="moveToImage()" class="clickable" [src]="'http://localhost:8079/media'+ media.fileDownloadUri" width="200"
+    height="250">
+</div>

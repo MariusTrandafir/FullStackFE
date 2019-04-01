@@ -30,12 +30,12 @@ export class SingleUploadComponent implements OnInit {
       description: [''],
       tags: [''],
       effects: ['']
-    });    
+    });
   }
 
   onFileChange(event) {
-    if(event.target.files && event.target.files.length) {
-      this.selectedFile =<File>event.target.files[0];
+    if (event.target.files && event.target.files.length) {
+      this.selectedFile = <File>event.target.files[0];
     }
   }
   get f() { return this.singleUploadForm.controls; }
@@ -43,18 +43,18 @@ export class SingleUploadComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     if (this.singleUploadForm.invalid) {
-        return;
+      return;
     }
     this.loading = true;
     this.mediaService.upload(this.singleUploadForm.value, this.selectedFile)
-    .subscribe(
+      .subscribe(
         data => {
-            this.alertService.success('Upload successful', true);
-            this.loading = false;
+          this.alertService.success('Upload successful', true);
+          this.loading = false;
         },
         error => {
-            this.alertService.error(error);
-            this.loading = false;
+          this.alertService.error(error);
+          this.loading = false;
         });
   }
 
