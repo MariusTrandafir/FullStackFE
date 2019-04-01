@@ -12,7 +12,7 @@ export class AuthService {
   public currentUser: Observable<User>;
 
   constructor(private http: HttpClient) {
-   this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
   public get currentUserValue(): User {
@@ -20,28 +20,28 @@ export class AuthService {
   }
   login(username: string, password: string) {
     return this.http.post<any>(`http://localhost:8079/user/user/auth`, { username, password })
-        .pipe(map(user => {
-            if (user.result && user.result.token) {
-                localStorage.setItem('currentUser', JSON.stringify(user.result));
-                this.currentUserSubject.next(user.result);
-                
-            }
+      .pipe(map(user => {
+        if (user.result && user.result.token) {
+          localStorage.setItem('currentUser', JSON.stringify(user.result));
+          this.currentUserSubject.next(user.result);
 
-            return user.result;
-        }));
-}
+        }
 
-logout() {
+        return user.result;
+      }));
+  }
+
+  logout() {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
-}
+  }
 
-register(user: User) {
-  return this.http.post(`http://localhost:8079/user/user/signup`, user);
-}
+  register(user: User) {
+    return this.http.post(`http://localhost:8079/user/user/signup`, user);
+  }
 
-checkUsername(username: string) {
-  return false;
-}
+  checkUsername(username: string) {
+    return false;
+  }
 
 }
