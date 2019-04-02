@@ -1,0 +1,46 @@
+<form [formGroup]="pictureUpdateForm" (ngSubmit)="onSubmit()">
+    <div class="row pt-2 mx-2">
+        <div class="col-6">
+            <div class="row">
+                <div class="col-2 pr-1">
+                    <img class="img-fluid"
+                        [src]="'http://localhost:8079/media' + (profileMedia | async)?.fileDownloadUri" width="50"
+                        height="60" />
+                </div>
+                <div class="col-10">
+                    <div class="row">
+                        <input type="text" formControlName="title" class="col-12 my-auto"
+                            [ngClass]="{ 'is-invalid': submitted && f.title.errors }" [readonly]="readonly" />
+                        <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                            <div *ngIf="f.title.errors.required">Title is required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row pt-2">
+                <img (click)="moveToImage()" class="clickable"
+                    [src]="'http://localhost:8079/media'+ media.fileDownloadUri">
+            </div>
+        </div>
+
+        <div class="col-6">
+            <textarea type="text" formControlName="description" class="col-12 my-auto" rows="6" [readonly]="readonly">
+            </textarea>
+            <input type="text" formControlName="tags" class="col-12 my-auto pt-2" [readonly]="readonly" />
+            <div class="row pt-2">
+                <div class="col-4">
+                        <img alt="Like Image" class="img-fluid pr-1" src="./assets/img/like.png" width=50 height=50>
+                    <span>{{this.media.likes}}</span>
+                </div>
+                <div clas="col-4">
+                        <img alt="Like Image" class="img-fluid pr-1" src="./assets/img/comment.png" width=50 height=50>
+                        <span>0</span>
+                    </div>
+            </div>
+            <div class="row pt-2">
+                TODO comments
+            </div>
+        </div>
+    </div>
+
+</form>

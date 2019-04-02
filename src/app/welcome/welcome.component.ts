@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class WelcomeComponent implements OnInit {
   media: Observable<Media>;
+  loggedIn = false;
 
   constructor(
     private authenticationService: AuthService,
@@ -18,8 +19,17 @@ export class WelcomeComponent implements OnInit {
   ) { }
 
   ngOnInit( ) {
-    this.media = this.mediaService.getProfileImage(this.authenticationService.currentUserValue.username);
+    this.authenticationService.currentUser
+    .subscribe(user => {
+      console.log ("LALALA" + user);
+      if (user) {
+        this.loggedIn = true;
+        this.media = this.mediaService.getProfileImage(user.username);
+      }
+    });
   }
+
+
   getProfileImage(username: String) {
   this.media = this.mediaService.getProfileImage(username);
   }

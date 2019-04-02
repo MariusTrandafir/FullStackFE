@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtInterceptorService } from './services/jwt-interceptor.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatDialogModule , MatCardModule, MatIconModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MediaDetailsComponent } from './my-media/media-details/media-details.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { MatDialogModule , MatCardModule, MatIconModule, MatToolbarModule, MatBu
     FollowingComponent,
     MyMediaImagesComponent,
     MyMediaVideosComponent,
+    MediaDetailsComponent
   ],
   imports: [
     BrowserModule,

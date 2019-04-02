@@ -5,4 +5,5 @@ export class Media {
     description: string;
     title: string;
     tags: string;
+    likes: number;
 }

@@ -1,8 +1,3 @@
-<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-        <mat-card class="card-picture" *ngFor="let media of medias| async">
-          <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
-            <span fxFlex="80%">{{media.title}}</span>
-          </mat-card-title>
-          <img mat-card-image [src]="'http://localhost:8079/media'+ media.fileDownloadUri">
-        </mat-card>
+<div class="card-deck m-0">
+    <app-my-media-images *ngFor="let media of medias| async" [media]="media"></app-my-media-images>
 </div>

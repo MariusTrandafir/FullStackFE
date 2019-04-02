@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
@@ -14,11 +14,15 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   loading = false;
   submitted = false;
+  userNameTaken: Boolean = true;
+  checked: Boolean = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private authenticationService: AuthService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private changeRef: ChangeDetectorRef
   ) {
     if (this.authenticationService.currentUserValue) {
       this.router.navigate(['/']);
@@ -53,7 +57,16 @@ export class RegisterComponent implements OnInit {
   }
 
   get f() { return this.registerForm.controls; }
-
+  
+  checkUsername() {
+    this.checked = true;
+    this.authenticationService.checkUsername(this.registerForm.controls.username.value)
+    .subscribe(userNameTaken => {
+      this.userNameTaken = userNameTaken;
+      console.log(userNameTaken);// this prints "true"
+      console.log(this.userNameTaken);// this prints "true"
+    });
+  }
   onSubmit() {
     this.submitted = true;
     if (this.registerForm.invalid) {

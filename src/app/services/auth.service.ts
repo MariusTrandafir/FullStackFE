@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
@@ -22,11 +23,10 @@ export class AuthService {
     return this.http.post<any>(`http://localhost:8079/user/user/auth`, { username, password })
       .pipe(map(user => {
         if (user.result && user.result.token) {
+          console.log(user.result);
           localStorage.setItem('currentUser', JSON.stringify(user.result));
           this.currentUserSubject.next(user.result);
-
         }
-
         return user.result;
       }));
   }
@@ -39,9 +39,13 @@ export class AuthService {
   register(user: User) {
     return this.http.post(`http://localhost:8079/user/user/signup`, user);
   }
+  update(user: User) {
+    return this.http.post(`http://localhost:8079/user/user/update`, user);
+  }
 
-  checkUsername(username: string) {
-    return false;
+  checkUsername(username: string): Observable<any> {
+    let requestUrl = 'http://localhost:8079/user/user/checkusername/' + username;
+    return this.http.get(requestUrl);
   }
 
 }

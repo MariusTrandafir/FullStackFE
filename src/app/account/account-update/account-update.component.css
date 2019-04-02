@@ -1,0 +1,18 @@
+    .username_taken {
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+    }
+    .username_available {
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #7CFC00;
+    }
+    .success {
+        width: 100%;
+        margin-top: .25rem;
+        font-size: 80%;
+        color: #7CFC00;
+        }
